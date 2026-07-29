@@ -5,8 +5,36 @@ const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..'); // becelo-site/
 const RESULTS_HTML = path.join(ROOT, 'results.html');
+const STYLE_CSS = path.join(ROOT, 'assets', 'style.css');
 const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
 const PORT = 8901;
+
+const BADGE_MOBILE_RE = /\.hero-corner-badge\{position:absolute;top:(\d+)px;right:(\d+)px;width:(\d+)px;height:auto;/;
+const BADGE_DESKTOP_RE = /\.hero-corner-badge\{width:(\d+)px;top:(\d+)px;right:(\d+)px;\}/;
+
+function readStyle() {
+  return fs.readFileSync(STYLE_CSS, 'utf8');
+}
+
+function parseBadge() {
+  const css = readStyle();
+  const m1 = css.match(BADGE_MOBILE_RE);
+  const m2 = css.match(BADGE_DESKTOP_RE);
+  if (!m1 || !m2) throw new Error('badge rules not found');
+  return {
+    mobile: { top: +m1[1], right: +m1[2], width: +m1[3] },
+    desktop: { width: +m2[1], top: +m2[2], right: +m2[3] },
+  };
+}
+
+function saveBadge({ mobile, desktop }) {
+  let css = readStyle();
+  css = css.replace(BADGE_MOBILE_RE,
+    `.hero-corner-badge{position:absolute;top:${mobile.top}px;right:${mobile.right}px;width:${mobile.width}px;height:auto;`);
+  css = css.replace(BADGE_DESKTOP_RE,
+    `.hero-corner-badge{width:${desktop.width}px;top:${desktop.top}px;right:${desktop.right}px;}`);
+  fs.writeFileSync(STYLE_CSS, css, 'utf8');
+}
 
 const FIG_RE = /<figure class="gf (s\d)"><img src="assets\/images\/([^"]+)" loading="lazy" alt="([^"]*)"><figcaption><b>([^<]*)<\/b><span>([^<]*)<\/span><\/figcaption><\/figure>/g;
 
@@ -86,6 +114,37 @@ const server = http.createServer((req, res) => {
     } catch (e) {
       send(res, 500, JSON.stringify({ error: e.message }));
     }
+    return;
+  }
+
+  if (pathname === '/api/badge' && req.method === 'GET') {
+    try {
+      send(res, 200, JSON.stringify(parseBadge()));
+    } catch (e) {
+      send(res, 500, JSON.stringify({ error: e.message }));
+    }
+    return;
+  }
+
+  if (pathname === '/api/save-badge' && req.method === 'POST') {
+    let body = '';
+    req.on('data', (c) => (body += c));
+    req.on('end', () => {
+      try {
+        const { mobile, desktop, publish } = JSON.parse(body);
+        saveBadge({ mobile, desktop });
+        let pushLog = null;
+        if (publish) {
+          const opts = { cwd: ROOT, stdio: 'pipe' };
+          execSync('git add -A', opts);
+          try { execSync('git commit -m "Update hero badge size via editor"', opts); } catch (e) {}
+          pushLog = execSync('git push', opts).toString();
+        }
+        send(res, 200, JSON.stringify({ ok: true, pushed: !!publish, pushLog }));
+      } catch (e) {
+        send(res, 500, JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
     return;
   }
 

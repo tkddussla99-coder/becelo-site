@@ -20,6 +20,21 @@
   .hint{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-size:13px;
     color:var(--slate);line-height:1.7;margin-bottom:20px;}
   .hint b{color:var(--ink);}
+  .badge-sec{background:#fff;border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:24px;}
+  .badge-sec h2{font-size:14px;margin:0 0 14px;}
+  .badge-row{display:flex;gap:20px;flex-wrap:wrap;}
+  .badge-preview-box{flex:1;min-width:220px;}
+  .bplabel{font-size:11.5px;color:var(--slate);display:block;margin-bottom:6px;}
+  .bpstage{position:relative;height:120px;background:var(--navy);border-radius:4px;overflow:hidden;}
+  .bpstage.wide{height:150px;}
+  .bpstage img{position:absolute;top:8px;right:8px;width:52px;height:auto;
+    border-radius:4px;box-shadow:0 4px 10px rgba(0,0,0,.35);}
+  .bpctrl{display:flex;align-items:center;gap:10px;margin-top:10px;}
+  .bpctrl input[type=range]{flex:1;}
+  .bpctrl span{font-family:monospace;font-size:12px;color:var(--slate);width:44px;text-align:right;}
+  .badge-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;flex-wrap:wrap;}
+  .badge-footer .savebtn{padding:10px 20px;font-size:13px;}
+
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
   .tile{background:#fff;border:1.5px solid var(--line);border-radius:6px;overflow:hidden;cursor:grab;
     transition:box-shadow .15s,border-color .15s;}
@@ -70,6 +85,32 @@
     <b>사용법</b> — ① 사진 카드를 마우스로 눌러서 원하는 위치로 끌어다 놓으면 순서가 바뀝니다. ② 카드 안의 좁게/중간/넓게 버튼으로 폭을 조절하세요 (세로 사진은 좁게 추천). ③ 제목/부제목 텍스트도 바로 수정 가능합니다. ④ 다 하셨으면 아래 <b>저장하고 배포하기</b> 버튼을 누르세요 — 실제 홈페이지(results.html)에 바로 반영되고 인터넷에도 자동 배포됩니다.
   </div>
 
+  <div class="badge-sec">
+    <h2>히어로 우측 상단 배지 크기</h2>
+    <div class="badge-row">
+      <div class="badge-preview-box">
+        <span class="bplabel">모바일 미리보기</span>
+        <div class="bpstage"><img id="badgeImgMobile" src="/site/assets/images/logistics-icon.jpg"></div>
+        <div class="bpctrl">
+          <input type="range" id="mobileWidth" min="24" max="160" value="52">
+          <span id="mobileWidthVal">52px</span>
+        </div>
+      </div>
+      <div class="badge-preview-box">
+        <span class="bplabel">데스크톱 미리보기</span>
+        <div class="bpstage wide"><img id="badgeImgDesktop" src="/site/assets/images/logistics-icon.jpg"></div>
+        <div class="bpctrl">
+          <input type="range" id="desktopWidth" min="24" max="240" value="84">
+          <span id="desktopWidthVal">84px</span>
+        </div>
+      </div>
+    </div>
+    <div class="badge-footer">
+      <span id="badgeStatus" style="font-size:12.5px;color:var(--slate);"></span>
+      <button class="savebtn" id="saveBadgeBtn">배지 크기 저장하고 배포하기</button>
+    </div>
+  </div>
+
   <div class="grid" id="grid"></div>
 
   <div class="unused-sec" id="unusedSec" style="display:none;">
@@ -97,6 +138,56 @@ async function load() {
   unused = data.unused || [];
   render();
 }
+
+let badgeData = null;
+
+async function loadBadge() {
+  const res = await fetch('/api/badge');
+  badgeData = await res.json();
+  const mSlider = document.getElementById('mobileWidth');
+  const dSlider = document.getElementById('desktopWidth');
+  mSlider.value = badgeData.mobile.width;
+  dSlider.value = badgeData.desktop.width;
+  updateBadgePreview();
+}
+
+function updateBadgePreview() {
+  const mW = document.getElementById('mobileWidth').value;
+  const dW = document.getElementById('desktopWidth').value;
+  document.getElementById('badgeImgMobile').style.width = mW + 'px';
+  document.getElementById('badgeImgDesktop').style.width = dW + 'px';
+  document.getElementById('mobileWidthVal').textContent = mW + 'px';
+  document.getElementById('desktopWidthVal').textContent = dW + 'px';
+}
+
+document.getElementById('mobileWidth').addEventListener('input', updateBadgePreview);
+document.getElementById('desktopWidth').addEventListener('input', updateBadgePreview);
+
+document.getElementById('saveBadgeBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('saveBadgeBtn');
+  const status = document.getElementById('badgeStatus');
+  btn.disabled = true;
+  status.textContent = '저장 중...';
+  try {
+    const mobile = { ...badgeData.mobile, width: +document.getElementById('mobileWidth').value };
+    const desktop = { ...badgeData.desktop, width: +document.getElementById('desktopWidth').value };
+    const res = await fetch('/api/save-badge', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mobile, desktop, publish: true })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(data.error || '저장 실패');
+    badgeData = { mobile, desktop };
+    status.style.color = '#1a7a3d';
+    status.textContent = '저장 및 배포 완료! 1~2분 후 반영됩니다.';
+  } catch (e) {
+    status.style.color = '#c0392b';
+    status.textContent = '오류: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
 
 function render() {
   const grid = document.getElementById('grid');
@@ -243,6 +334,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 });
 
 load();
+loadBadge();
 </script>
 </body>
 </html>
