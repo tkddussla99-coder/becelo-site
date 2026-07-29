@@ -579,9 +579,8 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
 
 /* ---- multi-page nav / hub (site split) ---- */
 .topnav a.on{color:var(--ink);border-bottom:1.5px solid var(--sky-deep);padding-bottom:3px;}
-.routesec{background:var(--paper-2);}
-.routemap{width:100%;height:auto;display:block;margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto;}
-.routemap text{font-family:'IBM Plex Mono',monospace;}
+.routemini{width:100%;max-width:360px;height:auto;display:block;margin-bottom:16px;}
+.routemini text{font-family:'IBM Plex Mono',monospace;}
 
 .hub{display:grid;gap:14px;margin-top:30px;}
 .hcard{background:var(--card);border:1px solid var(--line);padding:22px 20px;display:block;}
