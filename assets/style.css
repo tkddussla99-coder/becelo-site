@@ -439,6 +439,17 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
   background:rgba(46,155,224,.08);font-size:12px;letter-spacing:-0.02em;color:var(--ink);}
 .vbadge b{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;
   background:var(--sky-deep);color:#fff;padding:3px 7px;border-radius:100px;flex:none;}
+
+.quickcall{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:26px;
+  padding-top:22px;border-top:1px solid var(--line);}
+.qc-btn{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;
+  font-size:14.5px;font-weight:600;letter-spacing:-0.02em;padding:12px 20px;border-radius:100px;
+  transition:background .2s;}
+.qc-btn svg{width:17px;height:17px;flex:none;}
+.qc-btn:hover{background:var(--sky-deep);}
+.qc-email{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--slate);
+  border-bottom:1px solid var(--line);padding-bottom:2px;}
+.qc-email:hover{color:var(--sky-deep);border-color:var(--sky-soft);}
 .vsec{background:var(--navy);color:#fff;}
 .vsec .eyebrow{color:var(--sky-soft);}
 .vsec h2{color:#fff;}
