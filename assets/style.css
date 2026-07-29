@@ -628,9 +628,9 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .shows{grid-template-columns:1fr 1fr;}
 
   .gstrip{display:grid;grid-template-columns:repeat(4,1fr);
-    gap:14px;overflow:visible;padding:0;margin-top:40px;}
-  .gf{flex:none;height:220px;grid-column:auto;}
-  .gf img{width:100%;height:100%;object-fit:contain;object-position:center;background:#0E3A5F;}
+    gap:14px 14px;row-gap:28px;overflow:visible;padding:0;margin-top:40px;align-items:start;}
+  .gf{flex:none;grid-column:auto;height:auto;}
+  .gf img{width:100%;height:220px;object-fit:contain;object-position:center;background:#0E3A5F;}
   .ghint{display:none;}
 
   .pfeat{padding:34px 32px;}
