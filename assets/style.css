@@ -534,8 +534,11 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .hero-copy .kicker s{max-width:120px;}
   .hubside{margin-top:0;padding-top:51px;}
   .hubside .hub{grid-template-columns:1fr;gap:10px;}
-  .hubside .hcard{padding:16px 18px;}
-  .hubside .hcard p{font-size:12px;}
+  .hubside .hcard{display:flex;align-items:center;gap:12px;padding:14px 16px;}
+  .hubside .hcard .hicon{width:18px;height:18px;margin:0;flex:none;}
+  .hubside .hcard .htag{display:none;}
+  .hubside .hcard h3{font-size:14.5px;margin:0;}
+  .hubside .hcard p{display:none;}
   .team-hero .n{font-size:88px;}
   .org-branches{flex-direction:row;gap:20px;padding-top:32px;position:relative;}
   .org-branches::before{content:"";position:absolute;top:0;left:16.6%;right:16.6%;
