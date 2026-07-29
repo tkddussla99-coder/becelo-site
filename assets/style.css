@@ -539,6 +539,15 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .hubside .hcard .htag{display:none;}
   .hubside .hcard h3{font-size:14.5px;margin:0;}
   .hubside .hcard p{display:none;}
+  .team .board-hd{padding:24px 26px 20px;}
+  .team .board-hd b{font-size:14px;}
+  .team .board-list{padding:8px 26px;}
+  .team .row{padding:20px 0;font-size:15px;}
+  .team .row .nm{font-size:14px;}
+  .team .row .qt{font-size:15px;}
+  .team .board-ft{padding:12px 26px;}
+  .team .board-ft .big{font-size:52px;}
+  .team .board-ft .lb{font-size:14px;}
   .team-hero .n{font-size:88px;}
   .org-branches{flex-direction:row;gap:20px;padding-top:32px;position:relative;}
   .org-branches::before{content:"";position:absolute;top:0;left:16.6%;right:16.6%;
