@@ -297,7 +297,7 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .gstrip::-webkit-scrollbar{display:none;}
 .gf{flex:0 0 80%;scroll-snap-align:center;margin:0;min-width:0;}
-.gf img{width:100%;height:auto;display:block;border-radius:2px;
+.gf img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:2px;
   background:rgba(255,255,255,.06);}
 .gf figcaption{margin-top:10px;font-family:'IBM Plex Mono',monospace;
   font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
