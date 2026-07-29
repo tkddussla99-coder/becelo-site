@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>갤러리 편집기 — BECELO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --ink:#13212F; --navy:#0E3A5F; --slate:#54687C; --slate-2:#8CA3B8;
+    --paper:#FFFFFF; --paper-2:#EDF5FC; --sky-deep:#1273BE; --sky:#2E9BE0;
+    --sky-soft:#9AD2F3; --line:#D5E6F4;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:var(--paper-2);color:var(--ink);padding-bottom:100px;}
+  header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  header h1{font-size:16px;margin:0;}
+  header p{font-size:12.5px;color:var(--slate);margin:4px 0 0;}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px;}
+  .hint{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 18px;font-size:13px;
+    color:var(--slate);line-height:1.7;margin-bottom:20px;}
+  .hint b{color:var(--ink);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+  .tile{background:#fff;border:1.5px solid var(--line);border-radius:6px;overflow:hidden;cursor:grab;
+    transition:box-shadow .15s,border-color .15s;}
+  .tile.dragging{opacity:.4;}
+  .tile.dragover{border-color:var(--sky-deep);box-shadow:0 0 0 3px rgba(46,155,224,.2);}
+  .tile img{width:100%;height:130px;object-fit:contain;background:var(--navy);display:block;}
+  .tile .body{padding:10px 12px 12px;}
+  .tile input{width:100%;border:1px solid var(--line);border-radius:4px;padding:6px 8px;font-size:12.5px;
+    margin-bottom:6px;font-family:inherit;color:var(--ink);}
+  .tile input.title{font-weight:600;}
+  .sizerow{display:flex;gap:4px;margin-bottom:8px;}
+  .sizebtn{flex:1;border:1px solid var(--line);background:#fff;border-radius:4px;padding:5px 0;
+    font-size:11px;letter-spacing:.04em;cursor:pointer;color:var(--slate);}
+  .sizebtn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .rmbtn{width:100%;background:none;border:1px solid var(--line);border-radius:4px;padding:5px 0;
+    font-size:11px;color:#b04a4a;cursor:pointer;}
+  .rmbtn:hover{background:#fdeded;}
+  .unused-sec{margin-top:32px;}
+  .unused-sec h2{font-size:13px;color:var(--slate);font-weight:600;margin-bottom:10px;}
+  .unused-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
+  .unused-tile{background:#fff;border:1px dashed var(--slate-2);border-radius:6px;padding:6px;cursor:grab;text-align:center;}
+  .unused-tile img{width:100%;height:70px;object-fit:contain;background:var(--navy);border-radius:3px;}
+  .unused-tile p{font-size:10px;color:var(--slate);margin:6px 0 0;word-break:break-all;}
+  footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);
+    padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .savebtn{background:var(--navy);color:#fff;border:none;border-radius:100px;padding:13px 26px;
+    font-size:14.5px;font-weight:600;cursor:pointer;}
+  .savebtn:hover{background:var(--sky-deep);}
+  .savebtn:disabled{background:var(--slate-2);cursor:not-allowed;}
+  #status{font-size:13px;color:var(--slate);}
+  #status.ok{color:#1a7a3d;}
+  #status.err{color:#c0392b;}
+  a.livelink{color:var(--sky-deep);}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>레퍼런스 갤러리 편집기</h1>
+    <p>사진을 드래그해서 순서를 바꾸고, 크기(좁게/중간/넓게)를 고른 뒤 저장하세요.</p>
+  </div>
+  <div id="status"></div>
+</header>
+
+<div class="wrap">
+  <div class="hint">
+    <b>사용법</b> — ① 사진 카드를 마우스로 눌러서 원하는 위치로 끌어다 놓으면 순서가 바뀝니다. ② 카드 안의 좁게/중간/넓게 버튼으로 폭을 조절하세요 (세로 사진은 좁게 추천). ③ 제목/부제목 텍스트도 바로 수정 가능합니다. ④ 다 하셨으면 아래 <b>저장하고 배포하기</b> 버튼을 누르세요 — 실제 홈페이지(results.html)에 바로 반영되고 인터넷에도 자동 배포됩니다.
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="unused-sec" id="unusedSec" style="display:none;">
+    <h2>갤러리에 없는 사진 (끌어서 위 목록에 추가)</h2>
+    <div class="unused-grid" id="unusedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <span style="font-size:12px;color:var(--slate);">배포 후 1~2분 뒤 실제 사이트에 반영됩니다.</span>
+  <button class="savebtn" id="saveBtn">저장하고 배포하기</button>
+</footer>
+
+<script>
+const SPAN_LABEL = { s2: '좁게', s3: '중간', s4: '넓게' };
+const SPAN_ORDER = ['s2','s3','s4'];
+let items = [];
+let unused = [];
+let dragSrcIndex = null;
+
+async function load() {
+  const res = await fetch('/api/gallery');
+  const data = await res.json();
+  items = data.items;
+  unused = data.unused || [];
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  items.forEach((it, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.draggable = true;
+    tile.dataset.index = i;
+
+    const img = document.createElement('img');
+    img.src = '/site/assets/images/' + it.file;
+    tile.appendChild(img);
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'body';
+
+    const sizerow = document.createElement('div');
+    sizerow.className = 'sizerow';
+    SPAN_ORDER.forEach(sp => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sizebtn' + (it.span === sp ? ' active' : '');
+      b.textContent = SPAN_LABEL[sp];
+      b.onclick = () => { it.span = sp; render(); };
+      sizerow.appendChild(b);
+    });
+    bodyDiv.appendChild(sizerow);
+
+    const titleInput = document.createElement('input');
+    titleInput.className = 'title';
+    titleInput.value = it.title;
+    titleInput.oninput = () => { it.title = titleInput.value; };
+    bodyDiv.appendChild(titleInput);
+
+    const tagInput = document.createElement('input');
+    tagInput.value = it.tag;
+    tagInput.oninput = () => { it.tag = tagInput.value; };
+    bodyDiv.appendChild(tagInput);
+
+    const rmBtn = document.createElement('button');
+    rmBtn.type = 'button';
+    rmBtn.className = 'rmbtn';
+    rmBtn.textContent = '갤러리에서 빼기';
+    rmBtn.onclick = () => {
+      unused.push(it);
+      items.splice(i, 1);
+      render();
+    };
+    bodyDiv.appendChild(rmBtn);
+
+    tile.appendChild(bodyDiv);
+
+    tile.addEventListener('dragstart', (e) => {
+      dragSrcIndex = i;
+      tile.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    tile.addEventListener('dragend', () => tile.classList.remove('dragging'));
+    tile.addEventListener('dragover', (e) => { e.preventDefault(); tile.classList.add('dragover'); });
+    tile.addEventListener('dragleave', () => tile.classList.remove('dragover'));
+    tile.addEventListener('drop', (e) => {
+      e.preventDefault();
+      tile.classList.remove('dragover');
+      if (dragSrcIndex === null) return;
+      const moved = items.splice(dragSrcIndex, 1)[0];
+      items.splice(i, 0, moved);
+      dragSrcIndex = null;
+      render();
+    });
+
+    grid.appendChild(tile);
+  });
+
+  renderUnused();
+}
+
+function renderUnused() {
+  const sec = document.getElementById('unusedSec');
+  const ug = document.getElementById('unusedGrid');
+  ug.innerHTML = '';
+  if (!unused.length) { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+  unused.forEach((it, i) => {
+    const t = document.createElement('div');
+    t.className = 'unused-tile';
+    t.draggable = true;
+    const img = document.createElement('img');
+    img.src = '/site/assets/images/' + it.file;
+    t.appendChild(img);
+    const p = document.createElement('p');
+    p.textContent = it.file;
+    t.appendChild(p);
+    t.addEventListener('dragstart', (e) => {
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/unused-index', String(i));
+    });
+    ug.appendChild(t);
+  });
+
+  // allow dropping unused tiles onto the main grid's end
+  const grid = document.getElementById('grid');
+  grid.addEventListener('dragover', (e) => e.preventDefault());
+  grid.addEventListener('drop', (e) => {
+    const idxStr = e.dataTransfer.getData('text/unused-index');
+    if (idxStr === '') return;
+    const idx = Number(idxStr);
+    const moved = unused.splice(idx, 1)[0];
+    if (!moved.span) moved.span = 's2';
+    if (!moved.title) moved.title = moved.file.replace(/\.[a-z]+$/i, '');
+    if (!moved.tag) moved.tag = '';
+    if (!moved.alt) moved.alt = moved.title;
+    items.push(moved);
+    render();
+  });
+}
+
+document.getElementById('saveBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('saveBtn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+  status.className = '';
+  status.textContent = '저장 중...';
+  try {
+    const payload = items.map(it => ({
+      span: it.span, file: it.file, title: it.title, tag: it.tag,
+      alt: it.alt || (it.title + ' ' + it.tag)
+    }));
+    const res = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: payload, publish: true })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(data.error || '저장 실패');
+    status.className = 'ok';
+    status.innerHTML = '저장 및 배포 완료! 1~2분 후 <a class="livelink" href="https://tkddussla99-coder.github.io/becelo-site/results.html" target="_blank">실제 사이트</a>에서 확인하세요.';
+  } catch (e) {
+    status.className = 'err';
+    status.textContent = '오류: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+load();
+</script>
+</body>
+</html>
