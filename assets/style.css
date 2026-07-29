@@ -602,10 +602,9 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .step{border-top:1px solid var(--line);border-bottom:none;}
   .shows{grid-template-columns:1fr 1fr;}
 
-  .gstrip{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;
-    gap:12px;overflow:visible;padding:0;margin-top:40px;}
-  .gf{flex:none;height:280px;}
-  .gf.s2{grid-column:span 2;} .gf.s3{grid-column:span 3;} .gf.s4{grid-column:span 4;}
+  .gstrip{display:grid;grid-template-columns:repeat(4,1fr);
+    gap:14px;overflow:visible;padding:0;margin-top:40px;}
+  .gf{flex:none;height:220px;grid-column:auto;}
   .gf img{width:100%;height:100%;object-fit:contain;object-position:center;background:#0E3A5F;}
   .ghint{display:none;}
 
