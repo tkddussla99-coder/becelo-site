@@ -46,6 +46,7 @@ img{max-width:100%;display:block;}
 }
 .eyebrow.q{color:var(--slate-2);}
 h2{font-size:25px;line-height:1.34;font-weight:700;letter-spacing:-0.042em;margin-bottom:14px;}
+h2.pagetitle{font-size:34px;line-height:1.2;letter-spacing:-0.045em;}
 .lede{color:var(--slate);font-size:14.5px;line-height:1.78;max-width:44em;font-weight:400;}
 .rule{height:1px;background:var(--line);border:none;}
 
@@ -391,6 +392,9 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 .gtag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--sky-deep);display:block;margin-bottom:12px;}
 .gcard h3{font-size:18px;font-weight:700;letter-spacing:-0.035em;margin-bottom:9px;}
+.gcase{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.06em;color:var(--sky-deep);background:rgba(46,155,224,.1);
+  border:1px solid var(--sky-soft);border-radius:100px;padding:4px 11px;margin-bottom:14px;}
 .gcard .gp{font-size:13px;color:var(--slate);line-height:1.72;margin-bottom:18px;}
 .gchart{width:100%;height:auto;display:block;margin-top:4px;}
 .gchart text{font-family:'IBM Plex Mono',monospace;}
@@ -521,6 +525,7 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   body{font-size:16px;padding-bottom:0;}
   .sec{padding-top:92px;padding-bottom:92px;}
   h2{font-size:35px;}
+  h2.pagetitle{font-size:48px;}
   .lede{font-size:15.5px;}
   .topnav{display:flex;}
   .menu-btn{display:none;}
