@@ -12,6 +12,23 @@
     track.innerHTML = html + html;
   }
 
+  var menuBtn = document.getElementById('menuBtn');
+  var topnav = document.getElementById('topnav');
+  if(menuBtn && topnav){
+    menuBtn.addEventListener('click', function(){
+      var isOpen = topnav.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    topnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        topnav.classList.remove('open');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   if(!('IntersectionObserver' in window) || reduce){
     document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in');});
     return;
