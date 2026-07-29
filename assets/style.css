@@ -92,7 +92,7 @@ main::before{content:"";position:absolute;left:0;right:0;top:0;height:520px;z-in
     url('images/hero-bg.png');
   background-size:cover;background-position:center 45%;background-repeat:no-repeat;}
 
-.hero-corner-badge{position:absolute;top:10px;right:14px;width:52px;height:auto;
+.hero-corner-badge{position:absolute;top:10px;right:14px;width:160px;height:auto;
   border-radius:5px;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:2;opacity:.92;}
 
 .hero .kicker b{color:#fff;}
@@ -579,7 +579,7 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .menu-btn{display:none;}
   .hero{padding-top:80px;padding-bottom:72px;
     display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
-  .hero-corner-badge{width:84px;top:20px;right:24px;}
+  .hero-corner-badge{width:240px;top:20px;right:24px;}
   .hero-copy .kicker s{max-width:120px;}
   .hubside{margin-top:0;padding-top:51px;}
   .hubside .hub{grid-template-columns:1fr;gap:10px;}
