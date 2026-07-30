@@ -584,6 +584,13 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 .cta .eyebrow{color:rgba(255,255,255,.55);}
 .cta .cnote{font-family:'IBM Plex Mono',monospace;font-size:11px;
   color:rgba(255,255,255,.62);margin-top:16px;letter-spacing:.01em;line-height:1.8;}
+.gobtn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--sky-deep);
+  font-size:15px;font-weight:700;letter-spacing:-0.02em;padding:15px 26px;border-radius:100px;
+  box-shadow:0 10px 26px -12px rgba(0,0,0,.35);transition:background .2s,color .2s;}
+.gobtn svg{width:17px;height:17px;flex:none;}
+.gobtn:hover{background:var(--navy);color:#fff;}
+.cta .subtxt{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,.55);}
 .links{display:grid;gap:1px;background:rgba(255,255,255,.24);
   border:1px solid rgba(255,255,255,.24);}
 .links a,.links div{background:var(--sky);padding:15px 16px;
