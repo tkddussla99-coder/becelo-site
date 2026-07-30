@@ -581,6 +581,9 @@ footer .soc{display:flex;gap:16px;margin:14px 0;font-family:'IBM Plex Mono',mono
   font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);}
 footer .soc a{border-bottom:1px solid var(--line);padding-bottom:2px;}
 footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slate-2);margin-top:14px;}
+footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
+  border-top:1px solid var(--line-2);font-family:'IBM Plex Mono',monospace;
+  font-size:9px;color:var(--slate-2);line-height:1.9;letter-spacing:.01em;}
 
 /* ---- dock ---- */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:70;
