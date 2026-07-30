@@ -509,6 +509,28 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 .vnote{margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
   color:rgba(255,255,255,.4);line-height:1.75;}
 
+/* ---- voucher process ---- */
+.vtl-legend{display:flex;gap:16px;flex-wrap:wrap;margin:22px 0 6px;}
+.vtl-legend span{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--slate);}
+.vtl-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.vtl-legend .lg-gov{background:var(--line);}
+.vtl-legend .lg-bc{background:var(--sky);}
+.vtl{display:flex;flex-direction:column;gap:20px;margin-top:22px;}
+.vstep{display:grid;grid-template-columns:34px 1fr;gap:12px 14px;align-items:start;}
+.vstep .vwho{grid-column:1/-1;font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--slate-2);margin-bottom:2px;}
+.vstep.bc .vwho{color:var(--sky-deep);}
+.vstep .vdot{width:34px;height:34px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--slate);}
+.vstep.bc .vdot{border-color:var(--sky);background:var(--sky);color:#fff;
+  box-shadow:0 4px 14px rgba(46,155,224,.3);}
+.vstep b{font-size:14px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px;display:block;}
+.vstep p{font-size:12px;color:var(--slate);line-height:1.6;margin:0;}
+.vtl-note{margin-top:28px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);
+  border-radius:10px;font-size:12.5px;color:var(--slate);line-height:1.75;}
+.vtl-note b{color:var(--ink);}
+
 /* ---- offices / company ---- */
 .off{display:grid;gap:14px;margin-top:28px;}
 .o{border:1px solid var(--line);background:var(--card);padding:20px;}
@@ -638,6 +660,13 @@ footer .cr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--slat
   .sbgrid{grid-template-columns:repeat(4,1fr);}
   .sbgrid>div{padding:16px;}
   .sbgrid .sv{font-size:24px;}
+
+  .vtl{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;}
+  .vtl::before{content:"";position:absolute;top:17px;left:calc(100%/12);right:calc(100%/12);
+    height:2px;background:var(--line);z-index:0;}
+  .vstep{grid-template-columns:1fr;position:relative;z-index:1;padding:0 8px;text-align:center;}
+  .vstep .vdot{margin:0 auto 14px;}
+  .vstep .vwho,.vstep b,.vstep p{text-align:center;}
 
   .cases{grid-template-columns:1fr 1fr;}
   .gcards{grid-template-columns:1fr 1fr;}
