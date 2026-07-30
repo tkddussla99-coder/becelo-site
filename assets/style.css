@@ -489,6 +489,11 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 .qc-email{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--slate);
   border-bottom:1px solid var(--line);padding-bottom:2px;}
 .qc-email:hover{color:var(--sky-deep);border-color:var(--sky-soft);}
+.vmini{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;}
+.vmini span{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.02em;
+  color:var(--sky-deep);background:rgba(46,155,224,.08);border:1px solid var(--sky-soft);
+  border-radius:100px;padding:7px 13px;}
+
 .vsec{background:var(--navy);color:#fff;}
 .vsec .eyebrow{color:var(--sky-soft);}
 .vsec h2{color:#fff;}
