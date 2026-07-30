@@ -226,6 +226,9 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
 .org-card .hc{position:absolute;top:14px;right:14px;font-size:17px;color:var(--ink);line-height:1;}
 .org-card .hc small{font-size:10px;color:var(--slate-2);font-family:'Pretendard Variable',sans-serif;
   font-weight:400;letter-spacing:0;margin-left:1px;}
+.org-card .illust{display:flex;align-items:flex-end;gap:14px;margin-top:12px;}
+.org-card .illust img{width:88px;height:auto;flex:none;}
+.org-card .illust p{margin:0;font-size:11px;color:var(--slate);line-height:1.6;}
 .team-note{margin-top:22px;font-size:13px;color:var(--slate);line-height:1.75;
   border-left:1.5px solid var(--sky-soft);padding-left:14px;}
 
