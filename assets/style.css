@@ -409,6 +409,13 @@ details.dt[open] > summary i::after{height:0;}
 details.dt > summary:hover i{border-color:var(--sky-deep);}
 .dtbody{padding-bottom:6px;}
 
+.faqlist{margin-top:26px;border-bottom:1px solid var(--line);}
+.faqlist details.dt > summary{font-family:'Pretendard Variable',sans-serif;font-size:14px;
+  font-weight:600;letter-spacing:-0.01em;text-transform:none;color:var(--ink);}
+.faqlist details.dt[open] > summary{color:var(--sky-deep);}
+.faqlist .dtbody{padding-bottom:18px;}
+.faqlist .dtbody p{margin:0;font-size:13px;color:var(--slate);line-height:1.75;max-width:600px;}
+
 
 /* ---- case studies ---- */
 .casesec{background:var(--paper-2);}
@@ -575,6 +582,8 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 .cta h2{color:#fff;font-size:26px;letter-spacing:-0.045em;}
 .cta .lede{color:rgba(255,255,255,.78);margin-bottom:28px;}
 .cta .eyebrow{color:rgba(255,255,255,.55);}
+.cta .cnote{font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,.62);margin-top:16px;letter-spacing:.01em;line-height:1.8;}
 .links{display:grid;gap:1px;background:rgba(255,255,255,.24);
   border:1px solid rgba(255,255,255,.24);}
 .links a,.links div{background:var(--sky);padding:15px 16px;
