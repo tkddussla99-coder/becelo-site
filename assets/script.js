@@ -60,4 +60,14 @@
     });
   },{threshold:.6});
   document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e);});
+
+  var vio = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var f = en.target;
+      f.src = f.dataset.src;
+      vio.unobserve(f);
+    });
+  },{threshold:.25});
+  document.querySelectorAll('.showvid iframe[data-src]').forEach(function(e){vio.observe(e);});
 })();
