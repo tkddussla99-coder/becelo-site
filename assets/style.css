@@ -793,9 +793,11 @@ footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
 .hcard .htag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--sky-deep);display:block;margin-bottom:10px;}
 .hcard h3{font-size:17px;font-weight:700;letter-spacing:-0.03em;margin-bottom:8px;}
-.hcard h3::after{content:" →";color:var(--sky-soft);font-weight:400;}
+.hcard h3::after{content:" →";color:var(--sky-soft);font-weight:400;display:inline-block;
+  transition:transform .25s,color .25s;}
 .hcard p{font-size:13px;color:var(--slate);line-height:1.72;}
 .hcard:hover{background:var(--paper-2);}
+.hcard:hover h3::after{transform:translateX(5px);color:var(--sky-deep);}
 @media (min-width:900px){
   .hub{grid-template-columns:repeat(3,1fr);}
   .hub .hcard:nth-child(4),.hub .hcard:nth-child(5){grid-column:span 1;}
