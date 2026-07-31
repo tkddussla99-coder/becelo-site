@@ -179,8 +179,26 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
 /* ---- ceo greeting ---- */
 .ceo-photo{margin-top:30px;display:flex;justify-content:center;}
 .ceo-photo img{width:100%;max-width:410px;height:auto;border-radius:2px;
-  box-shadow:0 20px 50px -28px rgba(14,58,95,.35);}
+  box-shadow:0 20px 50px -28px rgba(14,58,95,.35);filter:saturate(.88) contrast(1.05) brightness(.97);}
 .ceo-sign{display:block;margin-top:20px;width:150px;height:auto;}
+
+/* ---- page banner (photo hero for subpages) ---- */
+.pbanner{position:relative;padding:100px 0 60px;overflow:hidden;}
+.pbanner::before{content:"";position:absolute;inset:0;background-image:var(--bg);
+  background-size:cover;background-position:center;
+  filter:grayscale(.25) contrast(1.08) saturate(.82) brightness(.85);}
+.pbanner::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(14,20,28,.35) 0%, rgba(13,28,42,.68) 65%, rgba(9,14,20,.9) 100%);}
+.pbanner .wrap{position:relative;z-index:1;}
+.pbanner .eyebrow{color:rgba(255,255,255,.62);}
+.pbanner h2{color:#fff;}
+.pbanner .lede{color:rgba(255,255,255,.8);}
+.pbanner .lede b{color:#fff;}
+.pbanner .cnote{color:rgba(255,255,255,.62);}
+.pbanner .links{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.22);}
+.pbanner .links a,.pbanner .links div{background:rgba(255,255,255,.08);color:#fff;}
+.pbanner .links dt{color:rgba(255,255,255,.6);}
+.pbanner .links a:hover,.pbanner .links a:active{background:rgba(255,255,255,.16);}
 
 /* ---- history ---- */
 .hist{margin-top:34px;}
@@ -235,7 +253,7 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
 .org-card .hc small{font-size:10px;color:var(--slate-2);font-family:'Pretendard Variable',sans-serif;
   font-weight:400;letter-spacing:0;margin-left:1px;}
 .org-card .illust{display:flex;align-items:flex-end;gap:14px;margin-top:12px;}
-.org-card .illust img{width:88px;height:auto;flex:none;}
+.org-card .illust img{width:88px;height:auto;flex:none;filter:saturate(.8) contrast(1.02);}
 .org-card .illust p{margin:0;font-size:11px;color:var(--slate);line-height:1.6;}
 .team-note{margin-top:22px;font-size:13px;color:var(--slate);line-height:1.75;
   border-left:1.5px solid var(--sky-soft);padding-left:14px;}
@@ -373,7 +391,7 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
 .gstrip::-webkit-scrollbar{display:none;}
 .gf{flex:0 0 80%;scroll-snap-align:center;margin:0;min-width:0;}
 .gf img{width:100%;height:210px;object-fit:contain;object-position:center;display:block;border-radius:2px;
-  background:#0E3A5F;}
+  background:#0E3A5F;filter:saturate(.88) contrast(1.05) brightness(.97);}
 .gf figcaption{margin-top:10px;font-family:'IBM Plex Mono',monospace;
   font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.42);}
@@ -594,7 +612,8 @@ details.dt > summary:hover i{border-color:var(--sky-deep);}
 
 .sitephotos{display:grid;gap:20px;margin-top:32px;}
 .spfig{margin:0;}
-.spfig img{width:100%;height:auto;display:block;border-radius:2px;border:1px solid var(--line);}
+.spfig img{width:100%;height:auto;display:block;border-radius:2px;border:1px solid var(--line);
+  filter:saturate(.88) contrast(1.05) brightness(.97);}
 .spfig figcaption{margin-top:10px;font-size:13px;color:var(--slate);}
 .spfig figcaption b{display:block;color:var(--ink);font-weight:600;font-size:13.5px;margin-bottom:2px;}
 @media (min-width:900px){
@@ -665,6 +684,7 @@ footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
   :root{--pad:56px;}
   body{font-size:16px;padding-bottom:0;}
   .sec{padding-top:116px;padding-bottom:116px;}
+  .pbanner{padding:150px 0 84px;}
   h2{font-size:35px;}
   h2.pagetitle{font-size:58px;}
   .lede{font-size:15.5px;}
@@ -745,6 +765,7 @@ footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
   .co div{break-inside:avoid;border-top:1px solid var(--line);border-bottom:none;grid-template-columns:96px 1fr;}
   .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
   .cta .split{align-items:center;}
+  .pbanner .split{align-items:center;}
   .cta h2{font-size:38px;}
   .dock{display:none;}
   footer{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;
