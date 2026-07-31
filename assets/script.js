@@ -12,6 +12,19 @@
     track.innerHTML = html + html;
   }
 
+  var clkSeoul = document.getElementById('clkSeoul'), clkBangkok = document.getElementById('clkBangkok');
+  if(clkSeoul && clkBangkok){
+    var fmtTime = function(tz){
+      return new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());
+    };
+    var tickClock = function(){
+      clkSeoul.textContent = fmtTime('Asia/Seoul');
+      clkBangkok.textContent = fmtTime('Asia/Bangkok');
+    };
+    tickClock();
+    setInterval(tickClock, 1000);
+  }
+
   var menuBtn = document.getElementById('menuBtn');
   var topnav = document.getElementById('topnav');
   if(menuBtn && topnav){
