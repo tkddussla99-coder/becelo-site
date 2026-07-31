@@ -35,13 +35,8 @@
 <!-- ================= HERO ================= -->
 <section class="hero-outer">
 <div class="wrap hero">
-  <div class="hclock" aria-hidden="true">
-    <div class="clk"><b id="clkSeoul">--:--</b><span><span class="dot-live"></span>SEOUL</span></div>
-    <div class="clk-sep"></div>
-    <div class="clk"><b id="clkBangkok">--:--</b><span><span class="dot-live"></span>BANGKOK</span></div>
-  </div>
   <div class="hero-copy">
-    <p class="kicker"><b>SEOUL</b><s></s><b>BANGKOK</b><s></s><span>SINCE 2021</span></p>
+    <p class="kicker"><b>SEOUL</b><span class="ktime"><span class="dot-live"></span><span id="clkSeoul">--:--</span></span><s></s><b>BANGKOK</b><span class="ktime"><span class="dot-live"></span><span id="clkBangkok">--:--</span></span><s></s><span>SINCE 2021</span></p>
     <svg class="routemini rv" viewBox="0 0 640 140" role="img" aria-label="한국에서 태국까지 비행기가 이동하는 노선 일러스트">
       <path d="M85,25 C104,23 117,37 114,60 C111,84 119,97 104,108 C89,117 70,109 65,90 C60,68 58,48 70,33 C74,29 79,26 85,25 Z" fill="#FFFFFF" opacity="0.16"/>
       <path d="M85,25 C104,23 117,37 114,60 C111,84 119,97 104,108 C89,117 70,109 65,90 C60,68 58,48 70,33 C74,29 79,26 85,25 Z" fill="none" stroke="#9AD2F3" stroke-width="1.5" opacity="0.6"/>
@@ -69,7 +64,23 @@
     </svg>
     <h1>한국 브랜드를<br>태국 <em>매대</em>까지.</h1>
     <p class="sub">태국 지상파 예능으로 알리고, 현지 법인이 직접 팔아냅니다. FDA 인증·통관·물류·채널 입점까지 비셀로 한 곳에서 끝납니다.</p>
-    <p class="vbadge"><b>NEW</b>KOTRA·중진공 수출바우처 수행기관 선정</p>
+    <div class="vbadge-row">
+      <p class="vbadge"><b>NEW</b>KOTRA·중진공 수출바우처 수행기관 선정</p>
+      <div class="cseal" aria-hidden="true">
+        <svg viewBox="0 0 60 60">
+          <defs><path id="cealPath" d="M30,30 m-25,0 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0"/></defs>
+          <circle cx="30" cy="30" r="28" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.6"/>
+          <g class="cseal-ring">
+            <text font-family="IBM Plex Mono, monospace" font-size="4" letter-spacing="1" fill="rgba(255,255,255,.6)">
+              <textPath href="#cealPath" startOffset="0%">KOTRA · 중진공 수출바우처 수행기관 선정 · </textPath>
+            </text>
+          </g>
+        </svg>
+        <div class="cseal-core">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+      </div>
+    </div>
 
     <div class="quickcall">
       <a href="tel:+82269512142" class="qc-btn">
