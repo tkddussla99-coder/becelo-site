@@ -71,6 +71,7 @@
       iframe.loading = 'eager';
       v.innerHTML = '';
       v.appendChild(iframe);
+      if(track) track.style.animationPlayState = 'paused';
     }, {once:true});
   });
 })();
