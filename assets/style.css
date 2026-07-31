@@ -105,29 +105,6 @@ main::before{content:"";position:absolute;left:0;right:0;top:0;height:520px;z-in
   background-size:cover;background-position:center 45%;background-repeat:no-repeat;}
 .hero{padding-top:46px;padding-bottom:40px;position:relative;}
 
-.hflow{position:absolute;top:14px;right:16px;width:130px;z-index:2;}
-.hflow svg{width:100%;height:auto;overflow:visible;display:block;}
-.hflow .node{fill:rgba(255,255,255,.5);}
-.hflow .node-line{stroke:rgba(255,255,255,.2);stroke-width:1.5;stroke-dasharray:3 4;}
-.hflow .lbl{font-family:'IBM Plex Mono',monospace;font-size:7.5px;fill:rgba(255,255,255,.6);
-  letter-spacing:.03em;text-anchor:middle;}
-.hflow .cty{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;fill:#fff;text-anchor:middle;}
-.hflow .progress{stroke:url(#hflowLineGrad);stroke-width:2.2;fill:none;stroke-linecap:round;
-  stroke-dasharray:200;stroke-dashoffset:200;animation:hflowDraw 4s linear infinite;filter:url(#hflowGlow);}
-@keyframes hflowDraw{0%{stroke-dashoffset:200;}92%{stroke-dashoffset:0;}100%{stroke-dashoffset:0;}}
-.hflow .node-end{fill:#3EB2F0;filter:url(#hflowGlow);}
-.hflow .ping{animation:hflowPing 4s ease-out infinite;transform-origin:center;}
-.hflow .ping-th{animation-delay:3.65s;}
-.hflow .ping-kr{animation-delay:0s;}
-@keyframes hflowPing{0%{r:5;opacity:.9;}12%{r:16;opacity:0;}100%{r:16;opacity:0;}}
-.hflow .box{animation:hflowTravel 4s linear infinite;filter:url(#hflowBoxGlow);}
-@keyframes hflowTravel{0%{transform:translateX(0);}92%{transform:translateX(204px);}100%{transform:translateX(204px);}}
-.hflow .box rect{fill:url(#hflowBoxGrad);}
-.hflow .box rect.lid{fill:#0C5A93;}
-.hflow .box .shine{fill:rgba(255,255,255,.5);}
-@media (prefers-reduced-motion:reduce){
-  .hflow .progress,.hflow .ping,.hflow .box{animation:none;}
-}
 
 .hero .kicker b{color:#fff;}
 .hero .kicker s{background:rgba(255,255,255,.28);}
@@ -713,7 +690,6 @@ footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
   .menu-btn{display:none;}
   .hero{padding-top:112px;padding-bottom:96px;
     display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
-  .hflow{width:190px;top:22px;right:26px;}
   .hero-copy .kicker s{max-width:120px;}
   .hubside{margin-top:0;}
   .hubside .hub{grid-template-columns:1fr;gap:14px;}
