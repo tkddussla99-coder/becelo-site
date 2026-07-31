@@ -175,8 +175,8 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;
   margin-top:12px;line-height:1.7;letter-spacing:.01em;}
 
 /* ---- ceo greeting ---- */
-.ceo-photo{aspect-ratio:4/3;margin-top:30px;}
-.ceo-photo img{width:100%;height:100%;object-fit:cover;border-radius:2px;
+.ceo-photo{margin-top:30px;display:flex;justify-content:center;}
+.ceo-photo img{width:100%;max-width:410px;height:auto;border-radius:2px;
   box-shadow:0 20px 50px -28px rgba(14,58,95,.35);}
 .ceo-sign{display:block;margin-top:20px;width:150px;height:auto;}
 
