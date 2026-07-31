@@ -114,12 +114,12 @@ main::before{content:"";position:absolute;left:0;right:0;top:0;height:520px;z-in
 
 .vbadge-row{display:flex;align-items:center;gap:14px;margin-top:20px;}
 .vbadge-row .vbadge{margin-top:0;}
-.cseal{position:relative;width:52px;height:52px;flex:none;}
+.cseal{position:relative;width:72px;height:72px;flex:none;}
 .cseal svg:first-child{width:100%;height:100%;}
 .cseal-ring{animation:cealSpin 16s linear infinite;transform-origin:30px 30px;}
 @keyframes cealSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .cseal-core{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-.cseal-core svg{width:18px;height:18px;color:var(--sky-soft);}
+.cseal-core svg{width:24px;height:24px;color:var(--sky-soft);}
 @media (prefers-reduced-motion:reduce){.cseal-ring{animation:none;}}
 
 
@@ -708,8 +708,8 @@ footer .legal{width:100%;flex:1 0 100%;margin-top:24px;padding-top:18px;
   .hero{padding-top:112px;padding-bottom:96px;
     display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
   .hero-copy .kicker s{max-width:120px;}
-  .cseal{width:60px;height:60px;}
-  .cseal-core svg{width:20px;height:20px;}
+  .cseal{width:88px;height:88px;}
+  .cseal-core svg{width:28px;height:28px;}
   .hubside{margin-top:0;}
   .hubside .hub{grid-template-columns:1fr;gap:14px;}
   .team{padding-top:36px;padding-bottom:36px;}
