@@ -3,7 +3,7 @@
 
   var brands = ['JUNG KWAN JANG','DONGKOOK','CENTELLIAN24','VT COSMETICS','LADOR','TIRTIR',
     'PURITO SEOUL','MULDREAM','FROMBIO','CEROLABS','LABNO','REVCELL','ZVYK','NUEGRAY',
-    'NUTRI D-DAY','CEPOLAB','그레인온'];
+    'NUTRI D-DAY','CEPOLAB','GRAIN ON'];
   var track = document.getElementById('track');
   if(track){
     var html = brands.map(function(b){
